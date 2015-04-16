@@ -1,0 +1,128 @@
+<script type="text/javascript">
+				function fadeinMenubarFrame(v) {
+				//var = document.getElementByID("menubarFrame");
+				v.style.backgroundColor = "#006600";
+				}
+				function fadeoutMenubarFrame(v) {
+				//var = document.getElementByID("menubarFrame");
+				v.style.backgroundColor = "#002400";
+				}
+				/*if (var.style.backgroundColor != "#06ff06")
+				{
+					var.style.backgroundColor = "#06ff06";
+				}
+				function fadeinMenubarFrame() {
+				var = document.getElementByID("menubarFrame");
+				if (var.style.backgroundColor != "#007100")
+				{
+					var.style.backgroundColor = "#007100";
+				}*/
+			</script>
+			
+			<script type="text/javascript">
+
+					var x = document.getElementById("flashinglightLeft");
+					var y = document.getElementById("flashinglightRight");
+					
+					setInterval(function(){					
+							x.style.backgroundColor = "#f5f02e";
+							y.style.backgroundColor = "#f5f02e";							
+						}, 2000);
+					setInterval(function(){				
+							x.style.backgroundColor = "#5f5c05";
+							y.style.backgroundColor = "#5f5c05";
+						}, 2500);
+
+					</script>
+					
+					<DIV class="header_section_center_bottom">
+
+					<DIV class="menubar" id="menubarFrame" onmouseover="fadeoutMenubarFrame(this)" onmouseout="fadeinMenubarFrame(this)">
+
+					<SPAN style="font-size: 1.1em;font-weight:bold;">This site is under construction. Please check back soon.</SPAN>
+					<br/>
+					<SPAN style="font-size:1.1em;font-weight:bold;">Catch me at <a href="mailto:alex@alexanderofoedu.com?subject=HiAlex!">alex@alexanderofoedu.com</a> in the meantime.</SPAN>
+					<br/>
+					<SPAN style="font-size:0.6em;font-weight:normal;text-align:center;">And this DIV Element does a cool little color flick I built. I love stuff like this. Javascript is so awesome!</SPAN>
+
+					</DIV>
+
+				</DIV>
+				
+				//CSS
+				
+				HTML, BODY
+{
+margin: 0%;
+padding: 0%;
+border: 0px
+/*font-size: 100.01%;*/
+}
+
+a:link,
+a:visited
+{
+color: #009933;
+text-decoration: none;
+}
+
+a:hover
+{
+color: #196419;
+text-decoration: none;
+}
+
+a:active
+{
+color: #CCCCCC;
+text-decoration: none;
+}
+
+a.menubarBtn:link
+{
+color: #DDDDDD;
+background-color: #185c18;
+}
+
+a.menubarBtn:visited
+{
+color: #DDDDDD;
+background-color: #185c18;
+}
+
+a.menubarBtn:hover
+{
+color: #196419;
+background-color: #051205;
+}
+
+a.menubarBtn:active
+{
+color: #CCCCCC;
+background-color: #051205;
+}
+
+.menubar
+{
+position: relative;
+/*padding-top: 10px;
+padding-right: 10px;
+padding-bottom: 10px;
+padding-left: 10px;*/
+/*bottom: 5px;*/
+height: 60%;
+width: 80%;
+margin-top: 3%;
+margin-left: 10.25%;
+float: left;
+background-color: #006600;
+text-align: center;
+}
+
+HTML, BODY
+{
+margin: 0%;
+padding: 0%;
+border: 0px
+/*font-size: 100.01%;*/
+}
