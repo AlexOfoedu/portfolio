@@ -1,0 +1,53 @@
+<?php
+
+			// Setting up the initial vars
+			/*$id = $_POST['txtId'];
+			$frmFile = $_POST['txtFrmFile'];
+			$pibFile = isset($_POST['txtPibFile']) ? print "" : print "";
+			$frmPth = isset($_POST['txtFrmPth']) ? print "" : print "";
+			$sftLdFile = isset($_POST['txtSftLdFile']) ? print "" : print "";
+			$mstPib = isset($_POST['txtMstPib']) ? print "" : print "";
+			$mstFrm = isset($_POST['txtMstFrm']) ? print "" : print "";
+			$mstSft = isset($_POST['txtMstSft']) ? print "" : print "";
+			*/
+			
+			if ($_POST['btnAdd'])
+			{
+
+				require_once 'scriptDBConnect.php';
+			
+			$id = $_POST['txtId'];
+			$frmFile = $_POST['txtFrmFile'];
+			$pibFile = $_POST['txtPibFile'];
+			$frmPth = $_POST['txtFrmPth'];
+			$sftLdFile = $_POST['txtSftLdFile'];
+			$mstPib = $_POST['txtMstPib'];
+			$mstFrm = $_POST['txtMstFrm'];
+			$mstSft = $_POST['txtMstSft'];
+			
+			$query = "INSERT INTO pibtable (PibId, FrmFile, PibFile, SftLdFile, MstPib, MstFrm, MstSft) VALUES ('NULL', '$frmFile', '$pibFile', '$frmPth', '$sftLdFile', '$mstPib', '$mstFrm', '$mstSft')";
+			mysql_query($query, $db_server);
+
+			}
+
+			else if ($_POST['btnGenerate'])
+			{
+
+			$id = $_POST['txtId'];
+			$frmFile = $_POST['txtFrmFile'];
+			$pibFile = $_POST['txtPibFile'];
+			$frmPth = $_POST['txtFrmPth'];
+			$sftLdFile = $_POST['txtSftLdFile'];
+			$mstPib = $_POST['txtMstPib'];
+			$mstFrm = $_POST['txtMstFrm'];
+			$mstSft = $_POST['txtMstSft'];			
+			
+			$stationFile = fopen("pib.txt", "w") or die("Uh-oh. Houston we have a complication...");
+			
+			$logText = 'PIBID=' . $id . PHP_EOL . 'firmware_file='. $frmFile . PHP_EOL . 'pib_file='. $pibFile . PHP_EOL . 'firmware_path='. $frmPth . PHP_EOL . 'softloader_file=' . $sftLdFile . PHP_EOL . 'master_pib=' . $mstPib . 'master_firmware='. $mstFrm . PHP_EOL . 'master_softloader='. $mstSft;
+
+			fwrite($stationFile, $logText);
+			fclose($stationFile);
+			
+			}
+		?>
