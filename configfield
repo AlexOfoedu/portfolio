@@ -1,0 +1,64 @@
+<FORM id="form_1" action="writescript_config.php" method="POST">
+				<FIELDSET>
+						<LABEL>
+						ID: <INPUT type="text" size="10" name="txtId" maxlength="6" disabled="true"></INPUT>
+						</LABEL>
+						<BR />
+						<LABEL>
+						HOST: <INPUT type="text" size="10" name="txtHost" maxlength="6"></INPUT>
+						</LABEL>
+						<BR />
+						<LABEL>
+						DUT BACKUP:
+						<SELECT name="ddmDutBackup">
+							<OPTION value="1">Yes</OPTION>
+							<OPTION value="0">No</OPTION>
+						</SELECT>
+						<BR />
+						</LABEL>
+						<LABEL>
+						GN UPGRADE:
+						<SELECT name="ddmGnUpgrade">
+							<OPTION value="1">Yes</OPTION>
+							<OPTION value="0">No</OPTION>
+						</SELECT>
+						<BR />
+						</LABEL>
+						<LABEL>
+						DUT UPGRADE:
+						<SELECT name="ddmDutUpgrade">
+							<OPTION value="1">Yes</OPTION>
+							<OPTION value="0">No</OPTION>
+						</SELECT>
+						<BR />
+						</LABEL>
+						<LABEL>
+						RUN TESTS:
+						<SELECT name="ddmRunTests">
+							<OPTION value="1">Yes</OPTION>
+							<OPTION value="0">No</OPTION>
+						</SELECT>
+						<!--RUN TESTS <INPUT type="text" size="40" name="txtOs" maxlength="32" /> -->
+						<!--<TEXTAREA name="txtHw" form="form_1" cols="30" rows="8" wrap="soft" placeholder="Work that keyboard!"></TEXTAREA>-->
+						</LABEL>
+					<!--HARDWARE: <INPUT type="text" size="120" name="txtHw">
+					<br>
+					<br>
+					-->
+						<DIV>
+						<SPAN style="padding-left: 10%">
+						<INPUT type="submit" name="btnAdd" value="Add station">
+						</SPAN>
+						<SPAN style="padding-left: 30%">
+						<INPUT type="button" name="btnModify" value="Modify station" onclick="reloadPage()">
+						<br>
+						<br>
+						<INPUT type="submit" name="btnSend" value="Generate file!" onsubmit="return reloadPage()">						
+						<!--<INPUT type="submit" name="btnSend" value="Generate file!" onsubmit="setTimeout(function () { window.location.reload(); }, 10)">
+						-->
+						<br>
+						<br>
+						</SPAN>
+						</DIV>
+				</FIELDSET>
+			</FORM>
