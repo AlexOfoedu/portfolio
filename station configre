@@ -1,0 +1,6 @@
+JOBID=
+host=wada
+backup_DUT=true
+upgrade_GN=true
+upgrade_DUT=true
+run_tests=true
