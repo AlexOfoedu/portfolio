@@ -1,0 +1,10 @@
+<?php
+
+	require_once 'dbAccess';
+
+	$db_conn = mysql_connect($dbServer, $dbUsername, $dbPassword);
+
+	if(!$dbServer) die('Fuck nuts...' . mysql_error());
+	if($dbServer) echo 'Fuck YES!';
+
+?>
