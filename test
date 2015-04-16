@@ -1,0 +1,11 @@
+TESTCONFIGID=
+test_spec=Mbits/sec
+PLC_mode=MISO
+Start_atten=
+stop_atten=
+steps=
+duration=
+bandwidth=
+traffic_type=All
+traffic_dir=OMNI
+atten_list=
