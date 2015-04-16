@@ -1,0 +1,40 @@
+<?php
+
+require_once 'dbAccess.php';
+
+$db_server = mysql_connect($dbServer, $dbUsername, $dbPassword);
+
+if (!$db_server) die ("Unable to connect to MySQL: " . mysql_error());
+mysql_select_db($dbDatabase) or die ("Unable to select database: " . mysql_error());
+
+$username = '';
+$password = '';
+$email = '';
+
+if((!isset($_POST['txtUsername'])) or (!isset($_POST['txtPassword'])) or (!isset($_POST['txtEmail']))) {
+	
+	exit("Forms were not all set!");
+
+}
+else
+{
+	$username = $_POST['txtUsername'];
+	$password = $_POST['txtPassword'];
+	$email = $_POST['txtEmail'];
+}
+
+//echo ("$username\n<br>$password\n<br>$email");
+
+$salt1 = "qm&h*";
+$salt2 = "pg!@";
+$token = md5("$salt1$password$salt2");
+add_user($username, $token, $email);
+
+function add_user($un, $pw, $em) {
+	$query = "INSERT INTO tbl_accounts VALUES('', '$un', '$pw', '$em')";
+	$result = mysql_query($query);
+	if (!$result) die ("Query didn't work " . mysql_error());
+}
+
+
+?>
