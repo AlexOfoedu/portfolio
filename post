@@ -1,0 +1,65 @@
+<?php
+		
+			// Setting up the initial vars
+			/*
+			$id = isset($_POST['txtId']) ? print "" : print "";
+			$pibId = isset($_POST['txtPibId']) ? print "" : print "";
+			$frm = isset($_POST['txtFrm']) ? print "" : print "";
+			$frmPth = isset($_POST['txtFrmPth']) ? print "" : print "";
+			$gnIc = isset($_POST['txtGn_Ic']) ? print "" : print "";
+			$dutIc = isset($_POST['txtDut_Ic']) ? print "" : print "";
+			$gnDv = isset($_POST['txtGn_Dv']) ? print "" : print "";
+			$dutDv = isset($_POST['txtDut_Dv']) ? print "" : print "";
+			$frmIc = isset($_POST['txtFrm_Ic']) ? print "" : print "";
+			$defPib = isset($_POST['txtDefPib']) ? print "" : print "";
+			*/
+			if ($_POST['btnAdd'])
+			{
+
+			require_once 'scriptDBAccess.php';
+
+			$db_server = mysql_connect($db_hostname, $db_username, $db_password);
+
+			if (!$db_server) die('Oh crap... ' . mysql_error());
+			if ($db_server) echo 'Awesome!';
+
+			mysql_select_db($db_database) or die ("Fucksticks!..." . mysql_error());
+
+			$id = $_POST['txtId'];
+			$pibId = $_POST['txtPibId'];
+			$frm = $_POST['txtFrm'];
+			$frmPth = $_POST['txtFrmPth'];
+			$gnIc = $_POST['txtGn_Ic'];
+			$dutIc = $_POST['txtDut_Ic'];
+			$gnDv = $_POST['txtGn_Dv'];
+			$dutDv = $_POST['txtDut_Dv'];
+			$frmIc = $_POST['txtFrm_Ic'];
+			$defPib = $_POST['txtDefPib'];
+
+			$query = "INSERT INTO firmchiptable (FrmId, FrmId_PibId, FrmVer, FrmPath, GnIc, DutIc, GnDevice, DutDevice, FrmIc, DefPib) VALUES ('NULL', 'NULL', '$frm', '$frmPth', '$gnIc', '$dutIc', '$gnDv', '$dutDv', '$frmIc', '$defPib')";
+			mysql_query($query);
+
+			}
+			else if ($_POST['btnSend'])
+			{
+			//Actual code -- DO NOT CHANGE
+			$id = $_POST['txtId'];
+			$pibId = $_POST['txtPibId'];
+			$frm = $_POST['txtFrm'];
+			$frmPth = $_POST['txtFrmPth'];
+			$gnIc = $_POST['txtGn_Ic'];
+			$dutIc = $_POST['txtDut_Ic'];
+			$gnDv = $_POST['txtGn_Dv'];
+			$dutDv = $_POST['txtDut_Dv'];
+			$frmIc = $_POST['txtFrm_Ic'];
+			$defPib = $_POST['txtDefPib'];
+
+			$stationFile = fopen("firmchip.txt", "w") or die("Uh-oh. Houston we have a complication...");
+			
+			$logText = 'FRMID=' . $id . PHP_EOL . 'PIBID='. $pibId . PHP_EOL . 'firmware_version='. $frm . PHP_EOL . 'firmware_path='. $frmPth . PHP_EOL . 'GN_IC=' . $gnIc . PHP_EOL . 'DUT_IC=' . $dutIc . 'GN_Device='. $gnDv . PHP_EOL . 'DUT_Device='. $dutDv . PHP_EOL . 'firmware_IC=' . $frmIc . PHP_EOL . 'Default_pib=' . $defPib;
+
+			fwrite($stationFile, $logText);
+			fclose($stationFile);
+			}
+			
+		?>
