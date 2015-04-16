@@ -1,0 +1,108 @@
+if ($_POST['btnAdd'])
+			{
+
+				require_once 'scriptDBConnect.php';
+
+			$id = $_POST['txtId'];
+			$gnPort = isset($_POST['ddlGnPort']) ? print "" : print "";
+			$dutPort = isset($_POST['ddlDutPort']) ? print "" : print "";
+			$title = $_POST['txtTitle'];
+			$gnUser = $_POST['txtGnUser'];
+			$dutUser = $_POST['txtDutUser'];
+			$gnFrm = $_POST['txtGnFrm'];
+			$dutFrm = $_POST['txtDutFrm'];
+			$gnMstStr = $_POST['txtGnMstStr'];
+			$dutMstStr = $_POST['txtDutMstStr'];
+			$gnZc = $_POST['txtGnZc'];
+			$dutZc = $_POST['txtDutZc'];
+			$hwId = $_POST['txtHwId'];
+			$output = isset($_POST['ddlOutput']) ? print "" : print "";
+			$title2 = $_POST['txtTitle2'];
+			$date = $_POST['txtDate'];
+			$time = $_POST['txtTime'];
+			$fileVer = $_POST['txtFileVer'];
+			$user = $_POST['txtUser'];
+
+			$query = "INSERT INTO tabulartable (TblId, GnPort, DutPort, Title, GnUsr, DutUsr, gnFrm, dutFrm, gnMstStr, dutMstStr, gnZc, dutZc, hwId, output, title2, date, time, fileVer, user) VALUES ('NULL', '$gnPort', '$dutPort', '$title', '$gnUser', '$dutUser', '$gnFrm', '$dutFrm', '$gnMstStr', '$dutMstStr', '$gnZc', '$dutZc', '$hwId', '$output', '$title2', '$date', '$time', '$fileVer', '$user')";
+			mysql_query($query, $db_server);
+
+			}
+
+			else if ($_POST['btnGenerate'])
+			{
+
+			// Setting up the initial vars
+			$id = $_POST['txtId'];
+			$gnPort = isset($_POST['ddlGnPort']) ? print "" : print "";
+			$dutPort = isset($_POST['ddlDutPort']) ? print "" : print "";
+			$title = $_POST['txtTitle'];
+			$gnUser = $_POST['txtGnUser'];
+			$dutUser = $_POST['txtDutUser'];
+			$gnFrm = $_POST['txtGnFrm'];
+			$dutFrm = $_POST['txtDutFrm'];
+			$gnMstStr = $_POST['txtGnMstStr'];
+			$dutMstStr = $_POST['txtDutMstStr'];
+			$gnZc = $_POST['txtGnZc'];
+			$dutZc = $_POST['txtDutZc'];
+			$hwId = $_POST['txtHwId'];
+			$output = isset($_POST['ddlOutput']) ? print "" : print "";
+			$title2 = $_POST['txtTitle2'];
+			$date = $_POST['txtDate'];
+			$time = $_POST['txtTime'];
+			$fileVer = $_POST['txtFileVer'];
+			$user = $_POST['txtUser'];
+
+			switch($gnPort)
+			{
+				case "3":
+					$gnPort = 'eth1';
+				break;
+				case "2":
+					$gnPort = 'eth2';
+				break;
+				case "1":
+					$gnPort = 'eth3';
+				break;
+				case "0":
+					$gnPort = 'eth4';
+				break;
+			}
+
+			switch($dutPort)
+			{
+				case "3":
+					$dutPort = 'eth1';
+				break;
+				case "2":
+					$dutPort = 'eth2';
+				break;
+				case "1":
+					$dutPort = 'eth3';
+				break;
+				case "0":
+					$dutPort = 'eth4';
+				break;
+			}
+
+			switch($output)
+			{
+				case "2":
+					$output = 'Kbits/sec';
+				break;
+				case "1":
+					$output = 'Mbits/sec';
+				break;
+				case "0":
+					$output = 'Gbits/sec';
+				break;
+			}			
+
+			$stationFile = fopen("tableresults.txt", "w") or die("Uh-oh. Houston we have a complication...");
+			
+			$logText = 'TABLEID=' . $id . PHP_EOL . 'GN_Port='. $gnPort . PHP_EOL . 'DUT_Port='. $dutPort . PHP_EOL . 'Title='. $title . PHP_EOL . 'GN_USR='. $gnUser . 'DUT_USR='. $dutUser . PHP_EOL . 'GN_FW='. $gnFrm . PHP_EOL . 'DUT_FW='. $dutFrm . 'GN_MFR_Str='. $gnMstStr . PHP_EOL . 'DUT_MFR_Str='. $dutMstStr . PHP_EOL . 'GN_ZC='. $gnZc . 'DUT_ZC='. $dutZc . PHP_EOL . 'HW_ID='. $hwId . PHP_EOL . 'output='. $output . PHP_EOL . 'Title='. $title2 . PHP_EOL . 'Date='. $date . PHP_EOL . 'Time='. $time . 'Version='. $fileVer . PHP_EOL . 'tester='. $user;
+
+			fwrite($stationFile, $logText);
+			fclose($stationFile);
+			
+			}
+		?>
