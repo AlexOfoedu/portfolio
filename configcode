@@ -1,0 +1,197 @@
+<HTML>
+
+	<HEAD>
+
+		
+	
+	</HEAD>
+
+	<BODY>
+
+		<?php
+
+			if ($_POST['btnAdd'])
+			{
+
+			require_once 'scriptDBAccess.php';
+
+			$db_server = mysql_connect($db_hostname, $db_username, $db_password);
+
+			if (!$db_server) die('Oh crap... ' . mysql_error());
+			if ($db_server) echo 'Awesome!';
+
+			mysql_select_db($db_database) or die ("Fucksticks!..." . mysql_error());
+			
+			//$id = $_POST['txtId'];
+			$host = isset($_POST['txtHost']) ? print "Boom." : print "And BOOM!";
+			//$host = $_POST['txtHost'];
+			$dutBackup = isset($_POST['ddmDutBackup']) ? print "Boom." : print "And BOOM!";
+			$gnUpgrade = isset($_POST['ddmGnUpgrade']) ? print "Boom." : print "And BOOM!";
+			$dutUpgrade = isset($_POST['ddmDutUpgrade']) ? print "Boom." : print "And BOOM!";
+			$runTests = isset($_POST['ddmRunTests']) ? print "Boom." : print "And BOOM!";
+
+
+			/*
+			switch($dutBackup)
+			{
+				case "1":
+					$dutBackup = 'true';
+				break;
+				case "0":
+					$dutBackup = 'false';
+				break;
+			}
+
+			switch($gnUpgrade)
+			{
+				case "1":
+					$gnUpgrade = 'true';
+				break;
+				case "0":
+					$gnUpgrade = 'false';
+				break;
+			}
+
+			switch($dutUpgrade)
+			{
+				case "1":
+					$dutUpgrade = 'true';
+				break;
+				case "0":
+					$dutUpgrade = 'false';
+				break;
+			}
+
+			switch($runTests)
+			{
+				case "1":
+					$runTests = 'true';
+				break;
+				case "0":
+					$runTests = 'false';
+				break;
+			}
+
+			*/
+
+			$query = "INSERT INTO configtable (Host, DutBackup, GnUpgrade, DutUpgrade, RunTests) VALUES (NULL, NULL, '$host', '$dutBackup', '$gnUpgrade', '$dutUpgrade', '$runTests')";
+			mysql_query($query);
+
+			/*echo $result;
+
+			if (!$result)
+				{
+				die ("Database...urr?" . mysql_error());
+				}
+				else
+				{
+					echo 'SUCCESSFUL DATAAA-BASSSE, BITCHES!';
+				}*/
+			}
+			// Opens up connection
+			
+
+
+
+			/*
+			// Validate optioss
+			if  (isset($_POST['txtHost'], $_POST['ddmDutBackup'], $_POST['ddmGnUpgrade'], $_POST['ddmDutUpgrade'], $_POST['ddmRunTests']) && is_numeric($_POST['ddmDutBackup']) && is_numeric($_POST['ddmGnUpgrade']) && is_numeric($_POST['ddmDutUpgrade']) && is_numeric($_POST['ddmRunTests'])
+			{*/
+
+			/*if (isset($_POST['ddmDutBackup']) ? echo "$_POST['ddmDutBackup']" : print 'Cannot see the entry')
+			{*/
+			else if ($_POST['btnSend'])
+			{
+
+			$id = $_POST['txtId'];
+			$host = $_POST['txtHost'];
+			//$dutBackup = isset($_POST['ddmDutBackup'] == "1") ? $_POST['ddmDutBackup'] = "Yes" : print 'Cannot see the entry';
+			/*$dutBackup = isset($_POST['ddmDutBackup']) ? $_POST['ddmDutBackup'] : print 'Cannot see the entry';*/
+			//$_POST['ddmDutBackup[]'];
+			//isset($_POST['ddmDutBackup']) ? $_POST['ddmDutBackup'] : '';
+			//THIS ONE ACTUALLY WORKS! IT'S IMPLICIT, THOUGH!
+			//$dutBackup = isset($_POST['ddmDutBackup']) ? print "Oh shit!" : $_POST['ddmDutBackup'] = "Yes";
+			//$dutBackup = isset($_POST['ddmDutBackup']) ? $_POST['ddmDutBackup'] = "Yes" : print "Oh shit!";
+			$dutBackup = isset($_POST['ddmDutBackup']) ? print "Boom." : print "And BOOM!";
+			// EXPLICIT BUT INEFFICIENT FOR A SIMPLE CHECK
+			/*if ($dutBackup == "1")
+			{
+				$dutBackup = "True";
+			};*/
+			// NICE ONE!
+			/*switch($dutBackup)
+			{
+				case "1":
+					$dutBackup = 'True';
+				break;
+				case "0":
+					$dutBackup = 'False';
+				break;
+			}*/
+			$gnUpgrade = isset($_POST['ddmGnUpgrade']) ? print "Boom." : print "And BOOM!";
+			$dutUpgrade = isset($_POST['ddmDutUpgrade']) ? print "Boom." : print "And BOOM!";
+			$runTests = isset($_POST['ddmRunTests']) ? print "Boom." : print "And BOOM!";
+
+			switch($dutBackup)
+			{
+				case "1":
+					$dutBackup = 'true';
+				break;
+				case "0":
+					$dutBackup = 'false';
+				break;
+			}
+
+			switch($gnUpgrade)
+			{
+				case "1":
+					$gnUpgrade = 'true';
+				break;
+				case "0":
+					$gnUpgrade = 'false';
+				break;
+			}
+
+			switch($dutUpgrade)
+			{
+				case "1":
+					$dutUpgrade = 'true';
+				break;
+				case "0":
+					$dutUpgrade = 'false';
+				break;
+			}
+
+			switch($runTests)
+			{
+				case "1":
+					$runTests = 'true';
+				break;
+				case "0":
+					$runTests = 'false';
+				break;
+			}
+
+			$stationFile = fopen("config.txt", "w") or die("Uh-oh. Houston we have a complication...");
+			
+			$logText = 'JOBID=' . $id . PHP_EOL . 'host='. $host . PHP_EOL . 'backup_DUT='. $dutBackup . PHP_EOL . 'upgrade_GN='. $gnUpgrade . PHP_EOL . 'upgrade_DUT=' . $dutUpgrade . PHP_EOL . 'run_tests=' . $runTests;
+
+			fwrite($stationFile, $logText);
+			fclose($stationFile);
+			/*}
+			/*}
+			else {
+			echo "Can't do it sir!";
+			}*/
+			}
+
+
+
+		?>
+
+
+	</BODY>
+
+</HTML>
+
+
