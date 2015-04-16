@@ -1,0 +1,24 @@
+<SCRIPT>
+
+			function reloadPage() {
+			
+			//document.window.src = "pantherinterface_config.html";
+
+
+			window.location.reload();
+
+			}
+
+			function writeMe() {
+			
+			//var testThisVar = document.getElementById['form_1'].elements['txtName'].value;
+			var stationId = document.forms['form_1'].elements['txtId'].value;
+			var stationName = document.forms['form_1'].elements['txtName'].value;			
+			var stationIp = document.forms['form_1'].elements['txtIp'].value;
+			var stationLoc = document.forms['form_1'].elements['txtLocation'].value;
+			var stationOs = document.forms['form_1'].elements['txtOs'].value;
+			var stationHw = document.forms['form_1'].elements['txtHw'].value;
+
+
+
+			alert("THE TEST VALUE IS " + stationName + " AND THIS OTHER TEST VALUE OVER 'ERE IS " + stationId + " ONE MORE TEST VAR TO USE " + stationIp + " BELIEVE IN THE VAR " + stationLoc + " STARGATE " + stationOs + " BELIEVE " + stationHw + "LONG STRANGE STRING VAR");
