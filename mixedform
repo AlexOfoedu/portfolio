@@ -1,0 +1,90 @@
+<FORM id="form_1" action="writescript_testconfig.php" method="POST">
+				<FIELDSET>
+						<LABEL>
+						ID: <INPUT type="text" size="10" name="txtId"  disabled="true" />
+						</LABEL>
+						<BR />
+						<LABEL>
+						TEST SPEC: 
+						<SELECT name="ddlTestSpec">
+							<OPTION value="2">Kbits/sec</OPTION>
+							<OPTION value="1">Mbits/sec</OPTION>
+							<OPTION value="0">Gbits/sec</OPTION>
+						</SELECT>
+						</LABEL>
+						<BR />
+						<LABEL>
+						PLC MODE: 
+						<SELECT name="ddlPlcMode">
+							<OPTION value="2">SISO</OPTION>
+							<OPTION value="1">MISO</OPTION>
+							<OPTION value="0">PSR</OPTION>
+						</SELECT>
+						<BR />
+						</LABEL>
+						<LABEL>
+						START ATTENUATION:
+						<INPUT type="text" size="40" name="txtAttnStr" maxlength="255" />
+						<BR />
+						</LABEL>
+						<LABEL>
+						STOP ATTENUATION:
+						<INPUT type="text" size="20" name="txtAttnSto" maxlength="255" />
+						<BR />
+						</LABEL>
+						<LABEL>
+						STEPS:
+						<INPUT type="text" size="20" name="txtSteps" maxlength="12" />
+						<BR />
+						</LABEL>
+						<LABEL>
+						DURATION:
+						<INPUT type="text" size="20" name="txtDur" maxlength="12" />
+						<BR />
+						</LABEL>
+						<LABEL>
+						BANDWIDTH (M):
+						<INPUT type="text" size="20" name="txtBndWd" maxlength="12" />
+						<BR />
+						</LABEL>
+						<LABEL>
+						TRAFFIC TYPE:
+						<SELECT name="ddlTrfcType">
+							<OPTION value="1">All</OPTION>
+							<OPTION value="0">PERS</OPTION>
+						</SELECT>
+						<BR />
+						</LABEL>
+						<LABEL>
+						TRAFFIC DIRECTION:
+						<SELECT name="ddlTrfcDrc">
+							<OPTION value="2">BIDI</OPTION>
+							<OPTION value="1">OMNI</OPTION>
+							<OPTION value="0">UNDI</OPTION>
+						</SELECT>
+						<BR />
+						</LABEL>
+						<LABEL>
+						ATTENUATION LIST:
+						<INPUT type="text" size="20" name="txtAttnList" maxlength="12" />
+						<BR />
+						</LABEL>
+					<!--HARDWARE: <INPUT type="text" size="120" name="txtHw">
+					<br>
+					<br>
+					-->
+						<DIV>
+						<SPAN style="padding-left: 10%">
+						<INPUT type="button" name="btnAdd" value="Add station" onclick="writeMe()">
+						</SPAN>
+						<SPAN style="padding-left: 30%">
+						<INPUT type="button" name="btnModify" value="Modify station">
+						<br>
+						<br>
+						<INPUT type="submit" name="btnSend" value="Generate file!">
+						<br>
+						<br>
+						</SPAN>
+						</DIV>
+				</FIELDSET>
+			</FORM>
