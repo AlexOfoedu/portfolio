@@ -1,0 +1,228 @@
+<SCRIPT type="text/javascript">
+
+		function linkUser() {
+
+		var listOption = document.getElementById("sidebarddmenu").value;
+
+		var frameWindow = document.getElementById("internalframe");
+
+		// CONFIG
+		if (listOption == "1") {
+			//alert("NO ONE!");
+			frameWindow.src = "pantherinterface_config.html";
+
+		}
+		// FIRMWARE/REFERENCE
+		if (listOption == "2") {
+			//alert("NO ONE!");
+			frameWindow.src = "pantherinterface_firmchip.html";
+		}
+		// HARDWARE
+		if (listOption == "3") {
+			//alert("NO ONE!");
+			frameWindow.src = "pantherinterface_pib.html";
+		}
+		// TEST SETUP
+		if (listOption == "4") {
+			//alert("NO ONE!");
+			frameWindow.src = "pantherinterface_testconfig.html";
+		}
+		// TABULAR DATA
+		if (listOption == "5") {
+			//alert("NO ONE!");
+			frameWindow.src = "pantherinterface_tabular.html";
+		}
+		// FILE PATHS
+		if (listOption == "6") {
+			//alert("NO ONE!");
+			frameWindow.src = "pantherinterface_paths.html";
+		}
+		// TEST PAGE
+		if (listOption == "7") {
+			//alert("NO ONE!");
+			frameWindow.src = "pantherinterface_appendlog.html";
+		}
+		// TEST PAGE
+		if (listOption == "8") {
+			//alert("NO ONE!");
+			frameWindow.src = "testpage.php";
+		}
+
+/*
+		// USER
+		if (listOption == "1") {
+			//alert("NO ONE!");
+			frameWindow.src = "pantherinterface_user.html";
+
+		}
+		// STATION
+		if (listOption == "2") {
+			//alert("NO ONE!");
+			frameWindow.src = "pantherinterface_station.html";
+		}
+		// FIRMWARE
+		if (listOption == "3") {
+			//alert("NO ONE!");
+			frameWindow.src = "pantherinterface_firmware.html";
+		}
+		// REFERENCE
+		if (listOption == "4") {
+			//alert("NO ONE!");
+			frameWindow.src = "pantherinterface_references.html";
+		}
+		// CUSTOMER
+		if (listOption == "5") {
+			//alert("NO ONE!");
+			frameWindow.src = "pantherinterface_customer.html";
+		}
+		// LOCKBENCH
+		if (listOption == "6") {
+			//alert("NO ONE!");
+			frameWindow.src = "pantherinterface_lockbench.html";
+		}
+		// TEST_SPEC
+		if (listOption == "6") {
+			//alert("NO ONE!");
+			frameWindow.src = "pantherinterface_test_spec.html";
+		}
+
+		// TEST_UP
+		if (listOption == "7") {
+			//alert("NO ONE!");
+			frameWindow.src = "pantherinterface_test_upcoming.html";
+		}
+		// TEST_EXEC
+		if (listOption == "8") {
+			//alert("NO ONE!");
+			frameWindow.src = "pantherinterface_test_execute.html";
+		}
+		// TEST_ABORT
+		if (listOption == "9") {
+			//alert("NO ONE!");
+			frameWindow.src = "pantherinterface_test_abort.html";
+		}
+		// STATUS_VIEW
+		if (listOption == "10") {
+			//alert("NO ONE!");
+			frameWindow.src = "pantherinterface_status.html";
+		}
+		// REPORT_GENERATE
+		if (listOption == "11") {
+			//alert("NO ONE!");
+			frameWindow.src = "pantherinterface_generate.html";
+		}
+		// LOGOUT --  WARNING: TEST USE, NOT FOR FINAL USE!
+		if (listOption == "12") {
+			alert("NO ONE!");
+			frameWindow.src = "pantherinterface_login.html";
+		}
+
+		// TEST PHP --  WARNING: TEST USE, NOT FOR FINAL USE!
+		if (listOption == "14") {
+			//alert("NO ONE!");
+			frameWindow.src = "testpage.php";
+		}
+
+*/
+
+		}
+
+<DIV class="contentcont">
+
+			<DIV class="content4">
+
+				<H1>Q-TEST</H1>
+
+				<DIV id="menubar">
+
+					<a class="menubar" href="pantherinterface_login.html" target="internalframe">Login</a>
+
+				</DIV>
+
+				
+			
+			</DIV>
+
+			<DIV class="content1">
+
+			<SELECT id="sidebarddmenu" onChange="linkUser()" multiple="multiple">
+			<OPTION value="1">CONFIG</OPTION>
+			<OPTION value="2">FIRMWARE/REFERENCE</OPTION>
+			<OPTION value="3">HARDWARE/PIB</OPTION>
+			<OPTION value="4">TEST SETUP</OPTION>
+			<OPTION value="5">TABULAR DATA</OPTION>
+			<OPTION value="6">FILE PATHS</OPTION>
+			<OPTION value="7">APPEND LOGS</OPTION>
+			<OPTION value="8">_TEST</OPTION>
+			<!--
+			<OPTION value="1">USER</OPTION>
+			<OPTION value="2">STATION</OPTION>
+			<OPTION value="3">FIRMWARE</OPTION>
+			<OPTION value="4">REFERENCE</OPTION>
+			<OPTION value="5">CUSTOMER</OPTION>
+			<OPTION value="6">LOCKBENCH</OPTION>
+			<OPTION value="7">TEST_SPEC</OPTION>
+			<OPTION value="8">TEST_UP</OPTION>
+			<OPTION value="9">TEST_EXEC</OPTION>
+			<OPTION value="10">TEST_ABORT</OPTION>
+			<OPTION value="11">STATUS_VIEW</OPTION>
+			<OPTION value="12">REPORT_GENERATE</OPTION>
+			<OPTION value="13">LOGOUT</OPTION>
+			<OPTION value="14">_TEST</OPTION>
+			-->
+			</SELECT>
+
+			
+
+<!--
+				<ol class="sidebar">
+					<li>Admin</li>
+						<ul>Add User</ul>
+						<ul>Delete User</ul>
+						<ul>Modify User</ul>
+					<li>Station</li>
+						<ul>Add Station</ul>
+						<ul>Delete Station</ul>
+						<ul>Modify Station</ul>
+					<li>Firmware</li>
+						<ul>Add Station</ul>
+						<ul>Delete Station</ul>
+						<ul>Modify Station</ul>
+					<li>Reference (Devices)</li>
+						<ul>Add Station</ul>
+						<ul>Delete Station</ul>
+						<ul>Modify Station</ul>
+					<li>Customer (Devices)</li>
+						<ul>Add Station</ul>
+						<ul>Delete Station</ul>
+						<ul>Modify Station</ul>
+					<li>Lock Bench</li>
+						<ul>Add Station</ul>
+						<ul>Delete Station</ul>
+						<ul>Modify Station</ul>
+				</ol>
+-->
+
+<!--
+				<ol class="sidebar">
+					<li>Test</li>
+					<li>Upcoming Test</li>
+					<li>Execute Test</li>
+					<li>Abort Test</li>
+				</ol>
+				
+				<ol class="sidebar">
+					<li>View Status</li>
+					<li>Generate Report</li>
+				</ol>
+
+				<ol class="sidebar">
+					<li>Logout</li>
+				</ol>
+-->
+
+			</DIV>
+
+			<DIV class="content2">
+
+			<IFRAME id="internalframe" name="internalframe" class="content" src="pantherinterface_login.html" seamless>a</IFRAME>
