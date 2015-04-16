@@ -1,0 +1,64 @@
+CREATE DATABASE SitterDB;
+
+/*
+CREATE TABLE TblAccounts
+{
+IdAccounts INT NOT NULL UNIQUE AUTO_INCREMENT,
+Username VARCHAR(40),
+Passcode VARCHAR(16),
+Email VARCHAR(60),
+PRIMARY KEY (Id_Accounts)
+}
+*/
+
+CREATE TABLE tbl_accounts
+(
+id MEDIUMINT NOT NULL UNIQUE AUTO_INCREMENT,
+username VARCHAR(32) UNIQUE,
+passcode VARCHAR(32),
+email VARCHAR(64) UNIQUE,
+PRIMARY KEY (id)
+)
+
+INSERT INTO tbl_accounts (username, passcode, email) VALUES ('testu', 'testp', 'alex@alexanderofoedu.com');
+
+/*
+You can upload pictures with a post, NOT seperately
+*/
+
+CREATE TABLE tbl_posts;
+(
+Id_Posts MEDIUMINT NOT NULL UNIQUE AUTO_INCREMENT,
+Id_Accounts_Posts MEDIUMINT,
+Id_Accounts_Pictures MEDIUMINT,
+Title VARCHAR(80),
+Body VARCHAR(255),
+Dte DATE,
+Tme TIME,
+SitType SMALLINT,
+FName VARCHAR(255),
+SName VARCHAR(255),
+Age TINYINT(2),
+Sex  TINYINT(1),
+Phone VARCHAR(11),
+Email VARCHAR(255),
+Descr VARCHAR(255),
+Rating TINYINT(1),
+Sits MEDIUMINT,
+PRIMARY KEY (Id_Posts)
+)
+
+INSERT INTO tbl_posts (Title, Body, Dte, Tme, SitType, FName, SName, Age, Sex, Phone, Email, Descr, Rating, Sits)
+VALUES ('Housesitter', 'awdawdawdawdw', 'CURDATE()', 'CURTIME()', '1', 'Angel', 'Sepharim', '28', '1', '01112223334', 'alex@alexanderofoedu.com', 'this is a descr', '4', '1');
+
+CREATE TABLE tbl_pictures
+(
+Id_Pictures MEDIUMINT NOT NULL UNIQUE AUTO_INCREMENT,
+Id_Pictures_Posts MEDIUMINT,
+Title VARCHAR(255),
+filename VARCHAR(255),
+Descr TEXT,
+PRIMARY KEY (Id_Pictures)
+)
+
+INSERT INTO tbl_pictures (Title, filename, Descr) VALUES ('MyPic','.../pics/example.png','Example pic');
