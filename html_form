@@ -1,0 +1,211 @@
+<span style="float: right">
+				
+					<form id="signInForm" action="PHP/scriptLogin.php" method="post">
+					USERNAME:
+					<input name="txtLoginUsername" type="text" size="20"></input>
+					PASSWORD:
+					<input name="txtLoginPassword" type="text" size="20"></input>
+					<input name="btnLogin" type="submit" value="Login"></input>
+					
+					<a id="txtSignIn" href="" onclick="signIn()">Sign In/Create Account</a>
+					
+					<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+
+		<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" 
+		"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+		<link rel="stylesheet" type="text/css" href="CSS/main.css" />
+
+		 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+	</head>
+
+	<body>
+		
+		<SCRIPT>
+
+			function signIn() {
+
+				//document.getElementById['txtSignIn'].submit();
+
+				document.getElementById['signInForm'].submit();
+
+			}
+
+		</SCRIPT>
+
+		<div class="contentcontainer">
+
+			<div class="content4">
+
+				<span style="float: right">
+				<a href="PHP/scriptAuthenticate2.php">Login</a>
+				<!--
+				<form id="signInForm" action="PHP/scriptLogin.php" method="post">
+				USERNAME:
+				<input name="txtLoginUsername" type="text" size="20"></input>
+				PASSWORD:
+				<input name="txtLoginPassword" type="text" size="20"></input>
+				-->
+				<!--
+				<a id="txtSignIn" href="" onclick="signIn()">Sign In/Create Account</a>
+				-->
+				<!--
+				<input name="btnLogin" type="submit" value="Login"></input>
+				-->
+				</form>
+				</span>
+
+			</div>
+
+			<div class="content1">
+				
+				<h1>Welcome to Greenwich Sitters!</h1>
+				
+				<h2><a href="main.html" class="menubar">HOME</a> <a href="account.html" class="menubar">ACCOUNT</a> <a href="posts.html" class="menubar">POSTS</a> <a href="contact.html" class="menubar">CONTACT US</a></h2>
+
+			</div>
+
+				
+			<div class="content2">
+
+			</div>
+
+			<div class="content3">
+
+				<form id="signupForm" action="PHP/scriptCreateAccount3_a.php" method="post">
+				<fieldset>
+					<label>
+					USERNAME:
+					<input name="txtUsername" type="text" ></input>
+					</label>
+					<br />
+					<label>
+					PASSWORD:
+					<input name="txtPassword" type="text" ></input>
+					</label>
+					<br />
+					<label>
+					EMAIL:
+					<input name="txtEmail" type="text" ></input>
+					</label>
+					<br />
+					<label>
+					<div class="g-recaptcha" data-sitekey="6Lc9Iv8SAAAAAO5dWN-gb2ktLByVQ3VjOIafN_LJ"></div>
+					<input name="btnSend" type="submit" value="Create account"></input>
+				</fieldset>
+				</form>		
+
+			</div>
+
+		</div>
+
+	</body>
+
+</html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+
+		<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" 
+		"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+		<link rel="stylesheet" type="text/css" href="CSS/main.css" />
+
+		<script src='https://www.google.com/recaptcha/api.js'></script>
+
+	</head>
+
+	<body>
+
+	<SCRIPT>
+
+			function signIn() {
+
+				//document.getElementById['txtSignIn'].submit();
+
+				document.getElementById['signInForm'].submit();
+
+			}
+
+			function clearBody() {
+
+				document.forms['contactForm'].elements['txtBody'].value = "";
+
+			}
+
+
+
+	</SCRIPT>
+		
+		<div class="contentcontainer">
+
+			<div class="content4">
+
+				<span style="float: right">
+				<form id="signInForm" action="PHP/scriptLogin.php" method="post">
+				USERNAME:
+				<input name="txtLoginUsername" type="text" size="20"></input>
+				PASSWORD:
+				<input name="txtLoginPassword" type="text" size="20"></input>
+				<!--
+				<a id="txtSignIn" href="" onclick="signIn()">Sign In/Create Account</a>
+				-->
+				<input name="btnLogin" type="submit" value="Login"></input>
+				</form>
+				</span>
+
+			</div>
+
+			<div class="content1">
+
+				<h1>Welcome to Greenwich Sitters!</h1>
+				
+				<h2><a href="main.html" class="menubar">HOME</a> <a href="account.html" class="menubar">ACCOUNT</a> <a href="posts.html" class="menubar">POSTS</a> <a href="contact.html" class="menubar">CONTACT US</a></h2>
+
+			</div>
+
+				
+			<div class="content2">
+
+			</div>
+
+			<div class="content3">
+
+				<form id="contactForm">
+				<fieldset>
+					<label>
+					NAME:
+					<input name="txtName" type="text" ></input>
+					</label>
+					<br />
+					<label>
+					EMAIL:
+					<input name="txtEmail" type="text" ></input>
+					</label>
+					<br />
+					<label>
+					SUBJECT:
+					<input name="txtSubject" type="text" ></input>
+					</label>
+					<br />
+					<label>
+					BODY:
+					<!--
+					<INPUT name="txtBody" type="text" ></INPUT>
+					-->
+					<textarea name="txtBody" placeholder="Enter your comment here"></textarea>
+					</label>
+					<div class="g-recaptcha" data-sitekey="6Lc9Iv8SAAAAAO5dWN-gb2ktLByVQ3VjOIafN_LJ"></div>
+					<input name="btnSend" type="submit" value="SEND IT!"></input>
+					<input name="btnClear" type="button" value="Clear Body" onclick="clearBody()"></input>
+				</fieldset>
+				</form>
+
+			</div>
+
+		</div>
+
+	</body>
+
+</html>
