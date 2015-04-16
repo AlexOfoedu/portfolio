@@ -1,0 +1,357 @@
+CREATE DATABASE QTestDB_4;
+
+CREATE TABLE ConfigTable
+(
+JobId int NOT NULL UNIQUE AUTO_INCREMENT,
+JobId_TstId int NOT NULL,
+Host VARCHAR(4),
+DutBackup TINYINT,
+GnUpgrade TINYINT,
+DutUpgrade TINYINT,
+RunTests TINYINT,
+PRIMARY KEY (JobId)
+/*
+FOREIGN KEY (JobId_TstId) REFERENCES TestConfigTable (TstId)
+*/
+)
+
+ALTER TABLE ConfigTable AUTO_INCREMENT=001;
+ALTER TABLE ConfigTable ALTER JobId_TstId SET DEFAULT '0';
+
+INSERT INTO ConfigTable (Host, DutBackup, GnUpgrade, DutUpgrade, RunTests)
+VALUES ('DS4', 0, 1, 1, 1);
+
+CREATE TABLE FirmChipTable
+(
+FrmId int NOT NULL UNIQUE AUTO_INCREMENT,
+FrmId_PibId int NOT NULL,
+FrmVer VARCHAR(12),
+FrmPath VARCHAR(255),
+GnIc VARCHAR(12),
+DutIc VARCHAR(12),
+GnDevice VARCHAR(40),
+DutDevice VARCHAR(40),
+FrmIc VARCHAR(40),
+DefPib VARCHAR(40),
+PRIMARY KEY (FrmId)
+/*
+FOREIGN KEY (FrmId_PibId) REFERENCES TestConfigTable (PibId)
+*/
+)
+
+ALTER TABLE FirmChipTable AUTO_INCREMENT=001;
+
+INSERT INTO FirmChipTable (FrmVer, FrmPath, GnIC, DutIc, GnDevice, DutDevice, FrmIc, DefPib)
+VALUES ('1.1.1-03', '../Firmware/Panther/$firmware_version', 'QCA7420', 'QCA7420', 'PL23', 'PL23', '7420', 'NA');
+
+CREATE TABLE PibTable
+(
+PibId int NOT NULL UNIQUE AUTO_INCREMENT,
+FrmFile VARCHAR(255),
+PibFile VARCHAR(255),
+SftLdFile VARCHAR(255),
+MstPib VARCHAR(255),
+MstFrm VARCHAR(255),
+MstSft VARCHAR(255),
+PRIMARY KEY (PibId)
+)
+
+ALTER TABLE PibTable AUTO_INCREMENT=001;
+
+INSERT INTO PibTable (FrmFile, PibFile, SftLdFile, MstPib, MstFrm, MstSft)
+VALUES ('MAC-7420-v1.1.1-03-X.nvm', 'QCA7420-WallAdapter-HomePlugAV_NorthAmerica.pib', 'NvmSoftloader-7420-v1.1.1-03.nvm', '$firmware_path/QCA7420-WallAdapter-HomePlugAV_NorthAmerica.pib', '$firmware_path/MAC-$firmware_IC-v$firmware_version-X.nvm', '$firmware_path/NvmSoftloader-$firmware_IC-v$firmware_version.nvm');
+
+CREATE TABLE TestConfigTable
+(
+TstId int NOT NULL UNIQUE AUTO_INCREMENT,
+TstSpc VARCHAR(60),
+PlcMde VARCHAR(20),
+AttnStr DECIMAL(4, 2),
+AttnSto DECIMAL(4, 2),
+Steps TINYINT,
+Dur DECIMAL(4, 2),
+BndWd SMALLINT,
+TrfcType TINYINT,
+TrfcDrc TINYINT,
+AttnList VARCHAR(255),
+PRIMARY KEY (TstId)
+)
+
+ALTER TABLE TestConfigTable AUTO_INCREMENT=001;
+
+INSERT INTO TestConfigTable (TstSpc, PlcMde, AttnStr, AttnSto, Steps, Dur, BndWd, TrfcType, TrfcDrc, AttnList)
+VALUES ('iPhone', 'SISO', 00, 90, 5, 60, 1000, 1, 1, '$(../Scripts/generate_atten_steps.sh $Start_atten $stop_atten $steps)');
+
+CREATE TABLE TabularTable
+(
+TblId int NOT NULL UNIQUE AUTO_INCREMENT,
+GnPort TINYINT,
+DutPort TINYINT,
+Title VARCHAR(255),
+GnUsr VARCHAR(255),
+DutUsr VARCHAR(255),
+Gn_Fw VARCHAR(255),
+Dut_Fw VARCHAR(255),
+GnMfrStr VARCHAR(255),
+DutMfrStr VARCHAR(255),
+GnZc SMALLINT,
+DutZc SMALLINT,
+HwId VARCHAR(20),
+Output TINYINT,
+Title2 VARCHAR(255),
+Dte DATE,
+Tme TIME,
+FileVer VARCHAR(12),
+Tester VARCHAR(12),
+PRIMARY KEY (TblId)
+)
+
+ALTER TABLE TabularTable AUTO_INCREMENT=001;
+
+INSERT INTO TabularTable (GnPort, DutPort, Title, GnUsr, DutUsr, Gn_Fw, Dut_Fw, GnMfrStr, DutMfrStr, GnZc, DutZc, Output, Title2, Dte, Tme, FileVer, Tester)
+VALUES (1, 1, 'Qualcomm Atheros PLC SNR Results', '$(plcID -i $GN_Port -U)', '$(plcID -i $DUT_Port -U)', '$(../Scripts/get_version.sh $GN_Port)', '$(../Scripts/get_version.sh $DUT_Port)', '$(plcID -i $GN_Port -S)', '$(plcID -i $DUT_Port -S)', 50, 50, 1, 'Confidential Qualcomm Atheros Information', '2014-10-12', '08:06:59', '1.2.3.4', 'Tester');
+
+CREATE TABLE PathsTable
+(
+PathId int NOT NULL UNIQUE AUTO_INCREMENT,
+TstFilePath VARCHAR(255),
+TstFileOut VARCHAR(255), 
+TempRsltOut VARCHAR(255),
+FnlRslt VARCHAR(255),
+PRIMARY KEY (PathId)
+)
+
+ALTER TABLE PathsTable AUTO_INCREMENT=001;
+
+INSERT INTO PathsTable (TstFilePath, TstFileOut, TempRsltOut, FnlRslt)
+VALUES ('../HTML/chart_footer_$JOBID.html', '../HTML/WIP_chart_table_$JOBID.html', '../HTML/$JOBID.html', '"SNR_RESULTS_"$host"_"$Date"_"$Default_pib"_"$JOBID".html"');
+
+CREATE TABLE UsersTable
+(
+UserId int NOT NULL UNIQUE AUTO_INCREMENT,
+Username VARCHAR(10) NOT NULL,
+Passcode VARCHAR(20) NOT NULL,
+PRIMARY KEY (UserId)
+)
+
+ALTER TABLE UsersTable AUTO_INCREMENT=001;
+
+INSERT INTO UsersTable (Username, Passcode)
+VALUES ('c_aofoed', 'qualpass');
+
+/*CREATE TABLE ConfigTable
+{
+JobId int NOT NULL UNIQUE AUTO_INCREMENT,
+Host VARCHAR(20),
+DutBackup VARCHAR(5),
+GnBackup VARCHAR(5),
+DutUpgrade VARCHAR(5),
+RunTests VARCHAR(5),
+#firmware/chipsets
+FrmVer VARCHAR(12),
+FrmPath VARCHAR(255),
+GnIC VARCHAR(12),
+DutIc VARCHAR(12),
+GnDevice VARCHAR(40),
+DutDevice VARCHAR(40),
+FrmIc VARCHAR(40),
+DefPib VARCHAR(40),
+#master_pib=$firmware_path/QCA$firmware_IC-WallAdapter-HomePlugAV_CE-ClassB.pib
+FrmFile VARCHAR(255),
+PibFile VARCHAR(255),
+SftLdFile VARCHAR(255),
+MstPib VARCHAR(255),
+MstFrm VARCHAR(255),
+MstSft VARCHAR(255),
+#test setup
+TstSpc VARCHAR(60),
+PlcMde VARCHAR(20),
+AttnStr VARCHAR(3),
+AttnSto VARCHAR(3),
+Steps VARCHAR(3),
+Dur VARCHAR(3),
+BndWd VARCHAR(3),
+TrfcType VARCHAR(20),
+TrfcDrc VARCHAR(20),
+AttnList VARCHAR(255),
+#atten_list="00 05 10 15 20 25 30 35 40 45 50 55 60 65 70 75 80 85 90 95"
+#Table data
+GnPort VARCHAR(8),
+DUtPort VARCHAR(8),
+Title VARCHAR (255),
+GnUsr VARCHAR(255),
+DutUsr VARCHAR(255),
+Gn_Fw VARCHAR(255),
+DutFw VARCHAR(255),
+GnMfrStr VARCHAR(255),
+DutMfrStr VARCHAR(255),
+GnZc VARCHAR(20),
+DutZc VARCHAR(20),
+HwId VARCHAR(20),
+Output VARCHAR(20),
+Title VARCHAR(20),
+Dte VARCHAR(11),
+Tme VARCHAR(6),
+FileVer VARCHAR(6),
+Tester VARCHAR(12),
+#file paths
+TstFilePath VARCHAR(255),
+TstFileOut VARCHAR(255), 
+TempRsltOut VARCHAR(255),
+FnlRslt VARCHAR(255),
+
+PRIMARY KEY (JobId)
+}
+*/
+
+/*CREATE TABLE StationTableO
+{
+P_Id int NOT NULL UNIQUE AUTO_INCREMENT,
+TsHost varchar(60) DEFAULT 'New',
+TsIp varchar(12) NOT NULL DEFAULT '192.0.167.168',
+TsGn varchar(60) DEFAULT 'Linux',
+TsDut varchar(60) DEFAULT 'London',
+FrmVer
+FrmDir
+GnChp
+GnRef
+GnEth
+DutChp
+DutRef
+DutEth
+TxPre
+TxPsd
+TstSIMI
+Attn
+
+PRIMARY KEY (P_Id)
+}*/
+/*
+CREATE TABLE StationTableO
+{
+P_Id int NOT NULL UNIQUE AUTO_INCREMENT,
+Host varchar(60) DEFAULT 'New',
+Ip varchar(12) NOT NULL DEFAULT '192.0.167.168',
+Gn varchar(60) DEFAULT 'Linux',
+Dut varchar(60) DEFAULT 'London',
+PRIMARY KEY (P_Id)
+}
+
+CREATE TABLE FirmwareTableO
+{
+P_Id int NOT NULL UNIQUE AUTO_INCREMENT,
+Ver varchar(60) DEFAULT 'New',
+Dir varchar(255) DEFAULT '\Firmware' 
+PRIMARY KEY (P_Id)
+}
+
+CREATE TABLE StationTable
+{
+P_Id int NOT NULL UNIQUE AUTO_INCREMENT,
+Host varchar(60) DEFAULT 'New',
+Ip varchar(12) NOT NULL DEFAULT '192.0.167.168',
+Gn varchar(60) DEFAULT 'Linux',
+Dut varchar(60) DEFAULT 'London',
+PRIMARY KEY (P_Id)
+}
+
+ALTER TABLE StationTable AUTO_INCREMENT = 001;
+
+INSERT INTO StationTable (Name, Ip, Gn, Dut) 
+VALUES ('Cheetah', '158.4.147.148', 'Linux', 'London', 'DAWD 2341 aadd adcacawca ewawdaw')
+INSERT INTO StationTable (Name, Ip, Os, Loc, Hw) 
+VALUES ('Lynx', '157.4.147.148', 'Linux', 'London', 'DAWD 4231 aadd adcacawca ewawdaw')
+INSERT INTO StationTable (Name, Ip, Os, Loc, Hw) 
+VALUES ('Panther', '159.4.147.148', 'Windows', 'Paris', 'DAWD 4213 aadd adcacawca ewawdaw')
+INSERT INTO StationTable (Name, Ip, Os, Loc, Hw) 
+VALUES ('Jackal', '160.4.147.148', 'Linux', 'London', 'DAWD 4355 aadd adcacawca ewawdaw')
+
+CREATE TABLE UserTable
+{
+P_Id int NOT NULL UNIQUE AUTO_INCREMENT,
+Name varchar(60) DEFAULT 'New',
+Team varchar(8) NOT NULL DEFAULT 'ENG-1',
+Loc varchar(60) DEFAULT 'Linux',
+Pos varchar(60) DEFAULT 'London',
+PRIMARY KEY (P_Id)
+}
+
+ALTER TABLE UserTable AUTO_INCREMENT = 001;
+
+INSERT INTO UserTable (Name, Team, Loc, Pos) 
+VALUES ('Frank', 'ENG-1', 'London', 'Lead')
+INSERT INTO UserTable (Name, Taem, Loc, Pos)
+VALUES ('Keith', 'ENG-1', 'London', 'Engineer')
+INSERT INTO UserTable (Name, Team, Loc, Pos) 
+VALUES ('Uzo', 'JPN-2', 'Osaka', 'Engineer')
+INSERT INTO UserTable (Name, Team, Loc, Pos) 
+VALUES ('Kenny', 'USA-3', 'San Jose', 'Tester')
+INSERT INTO UserTable (Name, Team, Loc, Pos) 
+VALUES ('Marcell', 'FRA-1', 'Paris', 'Engineer')
+INSERT INTO UserTable (Name, Team, Loc, Pos)
+VALUES ('Dan', 'ENG-2', 'Cambridge', 'Senior')
+
+CREATE TABLE FirmwareTable
+{
+P_Id int NOT NULL UNIQUE AUTO_INCREMENT,
+Name varchar(60) DEFAULT 'New',
+Ver varchar(7) NOT NULL DEFAULT '1.0.0.0',
+Prdt varchar(120) DEFAULT 'Product',
+Usd varchar(120) DEFAULT 'Product',
+PRIMARY KEY (P_Id)
+}
+
+ALTER TABLE FirmwareTable AUTO_INCREMENT = 001;
+
+INSERT INTO FirmwareTable (Name, Ver, Prdt, Usd) 
+VALUES ('Cheetah', '1.0.0.1', 'Lynx', 'ENG-1')
+INSERT INTO FirmwareTable (Name, Ver, Prdt, Usd) 
+VALUES ('Lynx-AV', '1.0.0.0', 'Rhino', 'London')
+INSERT INTO FirmwareTable (Name, Ver, Prdt, Usd) 
+VALUES ('Panther', '2.1.0.0', 'Lynx', 'London')
+INSERT INTO FirmwareTable (Name, Ver, Prdt, Usd) 
+VALUES ('Puma', '1.0.0.0', 'Lynx', 'London')
+
+CREATE TABLE ReferenceTable
+{
+P_Id int NOT NULL UNIQUE AUTO_INCREMENT,
+Name varchar(60) DEFAULT 'New',
+Chip varchar(12) NOT NULL DEFAULT '192.0.167.168',
+Dvc varchar(60) DEFAULT 'Linux',
+Prdt varchar(60) DEFAULT 'Linux',
+Hw text,
+PRIMARY KEY (P_Id)
+}
+
+ALTER TABLE ReferenceTable AUTO_INCREMENT = 001;
+
+INSERT INTO ReferenceTable (Name, Ip, Os, Loc, Hw) 
+VALUES ('Cheetah', '158.4.147.148', 'Linux', 'London', 'DAWD 2341 aadd adcacawca ewawdaw')
+INSERT INTO ReferenceTable (Name, Ip, Os, Loc, Hw) 
+VALUES ('Lynx', '157.4.147.148', 'Linux', 'London', 'DAWD 4231 aadd adcacawca ewawdaw')
+INSERT INTO ReferenceTable (Name, Ip, Os, Loc, Hw) 
+VALUES ('Panther', '159.4.147.148', 'Windows', 'Paris', 'DAWD 4213 aadd adcacawca ewawdaw')
+INSERT INTO ReferenceTable (Name, Ip, Os, Loc, Hw) 
+VALUES ('Jackal', '160.4.147.148', 'Linux', 'London', 'DAWD 4355 aadd adcacawca ewawdaw')
+
+CREATE TABLE CustomerTable
+{
+P_Id int NOT NULL UNIQUE AUTO_INCREMENT,
+Name varchar(60) DEFAULT 'New',
+Team varchar(12) NOT NULL DEFAULT '192.0.167.168',
+Loc varchar(60) DEFAULT 'London',
+Pos varchar(60) DEFAULT 'London',
+PRIMARY KEY (P_Id)
+}
+
+ALTER TABLE CustomerTable AUTO_INCREMENT = 001;
+
+INSERT INTO CustomerTable (Name, Ip, Os, Loc, Hw) 
+VALUES ('Cheetah', '158.4.147.148', 'Linux', 'London', 'DAWD 2341 aadd adcacawca ewawdaw')
+INSERT INTO CustomerTable (Name, Ip, Os, Loc, Hw) 
+VALUES ('Lynx', '157.4.147.148', 'Linux', 'London', 'DAWD 4231 aadd adcacawca ewawdaw')
+INSERT INTO CustomerTable (Name, Ip, Os, Loc, Hw) 
+VALUES ('Panther', '159.4.147.148', 'Windows', 'Paris', 'DAWD 4213 aadd adcacawca ewawdaw')
+INSERT INTO CustomerTable (Name, Ip, Os, Loc, Hw) 
+VALUES ('Jackal', '160.4.147.148', 'Linux', 'London', 'DAWD 4355 aadd adcacawca ewawdaw')
+*/
