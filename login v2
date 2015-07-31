@@ -13,12 +13,12 @@ $token = md5('mypassword');
 
 	if ($_SERVER['PHP_AUTH_USER'] == $username && $_SERVER['PHP_AUTH_PW'] == $password) {
 		
-		echo "You are now logged in, motherfucker!";
+		echo "You are now logged in!";
 
 	}
 	else {
 	
-		die("FUCK! Yo username and password combo is not valid, godammit!");
+		die("Yo username and password combo is not valid!");
 
 	}
 
@@ -27,7 +27,7 @@ else {
 
 	header('WWW-Authenticate: Basic realm= "Restricted Section"');
 	header('HTTP/1.0 401 Unauthorized');
-	die ("Please enter yo' muthafucking password and user id, niggaro!");
+	die ("Please enter yo password and user id!");
 
 }
 
